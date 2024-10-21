@@ -59,5 +59,3 @@ def update_movie(title, rating):
     and saves it. The function doesn't need to validate the input.
     """
     pass
-
-  
