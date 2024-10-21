@@ -9,7 +9,7 @@ def list_movies(file_path):
     contains the movies information in the database.
 
     The function loads the information from the JSON
-    file and returns the data. 
+    file and returns the data.
 
     For example, the function may return:
     {
@@ -51,6 +51,7 @@ def delete_movie(title, file_path):
 
     return write_data(details, file_path)
 
+
 def update_movie(title, rating):
     """
     Updates a movie from the movies database.
@@ -58,4 +59,5 @@ def update_movie(title, rating):
     and saves it. The function doesn't need to validate the input.
     """
     pass
+
   

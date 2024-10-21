@@ -3,6 +3,7 @@ from movie.repository.movie_storage import add_movie
 from movie.repository.movie_storage import delete_movie
 from movie.utility import constant
 
+
 def service_list_movies(file_path):
     return list_movies(file_path)
 
@@ -21,6 +22,7 @@ def main():
     result = delete_movie(title, constant.TEST_FILE_PATH)
 
     print(result)
+
 
 if __name__ == '__main__':
     main()

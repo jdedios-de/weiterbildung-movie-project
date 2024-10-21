@@ -31,7 +31,6 @@ class TestMovie:
                                                  constant.TEST_FILE_PATH)
         assert result["result"] == expected_output
 
-
     @pytest.mark.parametrize("title, expected_output",
                              [
                                  ("Movie Jerome", True),
@@ -40,9 +39,8 @@ class TestMovie:
                              )
     def test_delete_movie(self, title, expected_output, resource):
         result = movie_service.service_delete_movie(title,
-                                                 constant.TEST_FILE_PATH)
+                                                    constant.TEST_FILE_PATH)
         assert result["result"] == expected_output
-
 
     def test_list_movies(self, resource):
         result = movie_service.service_list_movies(constant.TEST_FILE_PATH)
