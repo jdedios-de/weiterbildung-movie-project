@@ -1,0 +1,10 @@
+{
+    "Titanic": {
+        "rating": 7.9,
+        "year": 1997
+    },
+    "The Shawshank Redemption": {
+        "rating": 9.3,
+        "year": 1994
+    }
+}
