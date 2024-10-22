@@ -12,8 +12,17 @@ def load_data(file_path) -> dict:
     Returns:
         dict: The data loaded from the JSON file.
     """
-    with open(file_path, "r") as handle:
-        return json.load(handle)
+    try:
+        with open(file_path, "r") as handle:
+            payload = json.load(handle)
+    except FileNotFoundError:
+        return result_message(False, "Error: The file was not found.", "")
+    except IOError:
+        return result_message(False, "Error: Could not read the file.", "")
+    except Exception as e:
+        return result_message(False, f"An unexpected error occurred: {e}", "")
+    else:
+        return result_message(True, "File written successfully.", payload)
 
 
 def write_data(details, file_path) -> result_message:
@@ -21,13 +30,13 @@ def write_data(details, file_path) -> result_message:
         with open(file_path, 'w') as write_to_file:
             write_to_file.write(json.dumps(details))
     except FileNotFoundError:
-        return result_message(False, "Error: The file was not found.")
+        return result_message(False, "Error: The file was not found.", "")
     except IOError:
-        return result_message(False, "Error: Could not write to the file.")
+        return result_message(False, "Error: Could not write to the file.", "")
     except Exception as e:
-        return result_message(False, f"An unexpected error occurred: {e}")
+        return result_message(False, f"An unexpected error occurred: {e}", "")
     else:
-        return result_message(True, "File written successfully.")
+        return result_message(True, "File written successfully.", "")
 
 
 def build_dict(title, year, rating):
@@ -38,10 +47,10 @@ def build_to_add_dict(year, rating):
     return {"rating": rating, "year": year}
 
 
-def fetch_data() -> dict:
+def fetch_data(file_path) -> dict:
     """
     Fetches the data and caches it after the first load,
-    demonstrating the Singleton Pattern and
+    demonstrating the [SINGLETON PATTERN] and
     following the standard for API invocation
 
     Returns:
@@ -50,5 +59,5 @@ def fetch_data() -> dict:
     global cached_data
 
     if cached_data is None:
-        cached_data = load_data()
+        cached_data = load_data(file_path)
     return cached_data

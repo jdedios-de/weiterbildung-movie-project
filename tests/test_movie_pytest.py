@@ -31,6 +31,26 @@ class TestMovie:
                                                  constant.TEST_FILE_PATH)
         assert result["result"] == expected_output
 
+    @pytest.mark.parametrize("title, rating, expected_output",
+                             [
+                                 ("Movie Jerome", 9.1, True),
+                                 ("Movie Savanna", 9.1, True)
+                             ]
+                             )
+    def test_update_movie(self, title, rating, expected_output, resource):
+        result = movie_service.service_update_movie(title, rating,
+                                                    constant.TEST_FILE_PATH)
+
+        assert result["rating"] == rating
+        assert result["result"] == expected_output
+
+    def test_stats_movies(self, resource):
+        average_rating, median_rating, best_movie, worst_movie, result \
+            = movie_service.service_stat_movies(constant.TEST_FILE_PATH)
+
+        assert average_rating == 8.7
+        assert median_rating == 9.1
+
     @pytest.mark.parametrize("title, expected_output",
                              [
                                  ("Movie Jerome", True),
@@ -43,5 +63,7 @@ class TestMovie:
         assert result["result"] == expected_output
 
     def test_list_movies(self, resource):
-        result = movie_service.service_list_movies(constant.TEST_FILE_PATH)
-        assert result == movie
+        result = movie_service.service_list_movies(
+            constant.TEST_FILE_PATH)
+
+        assert result[constant.PAYLOAD] == movie
