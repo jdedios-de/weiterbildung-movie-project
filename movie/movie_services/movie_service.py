@@ -1,57 +1,85 @@
-from movie.repository.movie_storage import list_movies, find_movie, \
-    stats_movies
-from movie.utility.misc_util import get_average_rating, get_median_rating, \
-    get_best_movie, get_worst_movie
-from movie.repository.movie_storage import add_movie
-from movie.repository.movie_storage import delete_movie
-from movie.repository.movie_storage import update_movie
+from movie.repository import movie_storage
+
+from movie.utility import misc_util
+
 from movie.utility import constant
 
-
-def service_list_movies(file_path):
-    return list_movies(file_path)
+import random
 
 
-def service_stat_movies(file_path):
-    rating_for_all_movies = []
+def service_list_movies(option, file_path):
+    if option == constant.RATING_KEY:
+        result = movie_storage.list_movies(file_path)
 
-    result = stats_movies(file_path)
+        return misc_util.result_message(True,
+                                        "Movies sorted by rating",
+                                        dict(sorted(
+                                            result[constant.PAYLOAD].items(),
+                                            key=lambda x: x[1][
+                                                constant.RATING_KEY],
+                                            reverse=True)
+                                        ))
 
-    for movie in result[constant.PAYLOAD]:
-        rating_for_all_movies.append(
-            float(result[constant.PAYLOAD][movie][constant.RATING_KEY]))
+    elif option == constant.YEAR_KEY:
+        result = movie_storage.list_movies(file_path)
 
-    average_rating = get_average_rating(rating_for_all_movies)
-    median_rating = get_median_rating(rating_for_all_movies)
-    best_movie = get_best_movie(result[constant.PAYLOAD])
-    worst_movie = get_worst_movie(result[constant.PAYLOAD])
+        return misc_util.result_message(True,
+                                        "Movies sorted by year",
+                                        dict(sorted(
+                                            result[constant.PAYLOAD].items(),
+                                            key=lambda x: x[1][
+                                                constant.YEAR_KEY],
+                                            reverse=True)
+                                        ))
 
-    return average_rating, median_rating, best_movie, worst_movie, result[constant.PAYLOAD]
-
-
-def service_add_movie(title, year, rating, file_path):
-    return add_movie(title, year, rating, file_path)
-
-
-def service_delete_movie(title, file_path):
-    return delete_movie(title, file_path)
+    else:
+        return movie_storage.list_movies(file_path)
 
 
-def service_update_movie(title, rating, file_path):
-    return update_movie(title, rating, file_path)
+def service_search_movies(to_search, file_path):
+    return movie_storage.search_movies(to_search, file_path)
 
 
 def service_find_movie(title, file_path):
-    return find_movie(title, file_path)
+    result = movie_storage.search_movies(title, file_path)
+
+    return misc_util.result_message(True,
+                                    "Stats movie has been generated",
+                                    [{key: value} for key, value in
+                                     result.items()
+                                     if title.lower() in key.lower()])
 
 
-def main():
-    title = "Titanic"
+def service_stat_movies(file_path):
+    result = movie_storage.stats_movies(file_path)
 
-    result = service_find_movie(title, constant.TEST_FILE_PATH)
+    (average_rating,
+     best_movie,
+     median_rating,
+     worst_movie) = misc_util.get_stat_details(result)
 
-    print(result)
+    return misc_util.result_message(True, "Stats movie has been generated",
+                                    [average_rating, median_rating,
+                                     best_movie, worst_movie,
+                                     result[constant.PAYLOAD]])
 
 
-if __name__ == '__main__':
-    main()
+def service_random_movie(file_path):
+    generate_random_movie = movie_storage.list_movies(file_path)[
+        constant.PAYLOAD]
+
+    return misc_util.result_message(True, "Random movie has been generated",
+                                    random.choice(
+                                        list(generate_random_movie.items())))
+
+
+def service_add_movie(title, year, rating, file_path):
+    return movie_storage.add_movie(title, year, rating, file_path)
+
+
+def service_delete_movie(title, file_path):
+    return movie_storage.delete_movie(title, file_path)
+
+
+def service_update_movie(title, rating, file_path):
+    return movie_storage.update_movie(title, rating, file_path)

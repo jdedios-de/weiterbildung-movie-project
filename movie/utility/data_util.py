@@ -1,11 +1,10 @@
 import json
 
-from movie.utility.misc_util import result_message
+from movie.utility import misc_util
 
 cached_data = None
 
-
-def load_data(file_path) -> dict:
+def load_data(file_path) -> misc_util.result_message:
     """
     Loads and returns the content of a JSON file.
 
@@ -16,27 +15,28 @@ def load_data(file_path) -> dict:
         with open(file_path, "r") as handle:
             payload = json.load(handle)
     except FileNotFoundError:
-        return result_message(False, "Error: The file was not found.", "")
+        return misc_util.result_message(False, "Error: The file was not found.", "")
     except IOError:
-        return result_message(False, "Error: Could not read the file.", "")
+        return misc_util.result_message(False, "Error: Could not read the file.", "")
     except Exception as e:
-        return result_message(False, f"An unexpected error occurred: {e}", "")
+        return misc_util.result_message(False, f"An unexpected error occurred: {e}", "")
     else:
-        return result_message(True, "File written successfully.", payload)
+        return misc_util.result_message(True, "File loaded successfully.", payload)
 
 
-def write_data(details, file_path) -> result_message:
+def write_data(details, file_path) -> misc_util.result_message:
     try:
         with open(file_path, 'w') as write_to_file:
             write_to_file.write(json.dumps(details))
     except FileNotFoundError:
-        return result_message(False, "Error: The file was not found.", "")
+        return misc_util.result_message(False, "Error: The file was not found.", "")
     except IOError:
-        return result_message(False, "Error: Could not write to the file.", "")
+        return misc_util.result_message(False, "Error: Could not write to the file.",
+                              "")
     except Exception as e:
-        return result_message(False, f"An unexpected error occurred: {e}", "")
+        return misc_util.result_message(False, f"An unexpected error occurred: {e}", "")
     else:
-        return result_message(True, "File written successfully.", "")
+        return misc_util.result_message(True, "File written successfully.", "")
 
 
 def build_dict(title, year, rating):

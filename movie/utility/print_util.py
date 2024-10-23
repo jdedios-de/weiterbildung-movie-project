@@ -1,5 +1,6 @@
 from movie.utility import constant
 
+
 def print_header():
     print("********** My Movies Database **********")
 
@@ -19,29 +20,46 @@ def print_menu():
     print("10. Filter movies\n")
 
 
-def print_stats_movies(average_rating, median_rating, best_movie, worst_movie, payload):
+def print_stats_movies(average_rating, median_rating, best_movie, worst_movie,
+                       payload):
     print(f"Average rating: {average_rating:.1f}")
     print(f"Median rating: {median_rating:.1f}")
 
-    for movie in best_movie:
-        print(f"Best movie: {movie}, "
-              f"{payload[movie][constant.RATING_KEY]}")
+    print("\n".join(
+        [
+            f"Best movie: {movie}, "
+            f"{payload[movie][constant.RATING_KEY]}"
+            for movie in best_movie]
+    ))
 
-    for movie in worst_movie:
-        print(f"Worst movie: {movie}, "
-              f"{payload[movie][constant.RATING_KEY]}")
+    print("\n".join(
+        [
+            f"Worst movie: {movie}, "
+            f"{payload[movie][constant.RATING_KEY]}"
+            for movie in worst_movie]
+    ))
 
 
 def print_movie_list(total_movies, movies):
     print(f"{total_movies} movies in total")
-    for movie in movies:
-        print(
-            f"{movie} ({movies[movie][constant.YEAR_KEY]}): {movies[movie][constant.RATING_KEY]}")
+    print("\n".join(
+        [
+            f"{movie} ({movies[movie][constant.YEAR_KEY]}): "
+            f"{movies[movie][constant.RATING_KEY]}"
+            for movie in movies]
+    ))
 
 
-def main():
-    pass
+def print_movie_search(movies):
+    print("\n".join(
+        [
+            f"{mov} ({details[constant.YEAR_KEY]}): "
+            f"{details[constant.RATING_KEY]}"
+            for movie in movies
+            for mov, details in movie.items()]
+    ))
 
 
-if __name__ == '__main__':
-    main()
+def print_random_generated_movie(result):
+    print(f"Your movie for tonight: {result[constant.PAYLOAD][0]}, "
+          f"it's rated {result[constant.PAYLOAD][1][constant.RATING_KEY]}")
