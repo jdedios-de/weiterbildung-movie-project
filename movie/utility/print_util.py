@@ -45,6 +45,7 @@ Functions:
         before showing the menu again.
 """
 
+
 def print_header() -> None:
     print("********** My Movies Database **********")
 

@@ -29,6 +29,7 @@ Functions:
 
 cached_data = None
 
+
 def load_data(file_path: WindowsPath) -> misc_util.result_message:
     """
     Loads and returns the content of a JSON file.

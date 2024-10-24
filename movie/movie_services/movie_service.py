@@ -14,7 +14,7 @@ functions to retrieve, manipulate, and return movie data in
 a structured format.
 
 Functions:
-    service_list_movies(option: str, file_path: WindowsPath) 
+    service_list_movies(option: str, file_path: WindowsPath)
     -> result_message:
     Lists movies from the storage. Optionally sorts them by rating or year.
 
@@ -27,7 +27,7 @@ Functions:
 
     service_find_movie(is_exact: bool, title: str,
     file_path: WindowsPath) -> result_message:
-        Finds a movie by its title. Can search foran exact match 
+        Finds a movie by its title. Can search foran exact match
         or a partial match.
 
     service_stat_movies(file_path: WindowsPath) -> result_message:
