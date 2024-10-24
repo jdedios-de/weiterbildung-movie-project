@@ -56,4 +56,3 @@ def validate_input_filter_movie(end_year: str, minimum_rating: str,
         end_year = datetime.now().year
 
     return float(minimum_rating), int(start_year), int(end_year)
-
