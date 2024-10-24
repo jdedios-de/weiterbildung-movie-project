@@ -14,7 +14,7 @@ movie = {
     },
     "Finding Forrester": {
         "rating": 8.1,
-        "year": 2024
+        "year": 2025
     }
 }
 
@@ -25,7 +25,7 @@ movie_sort_rating = {
     },
     "Finding Forrester": {
         "rating": 8.1,
-        "year": 2024
+        "year": 2025
     },
     "Titanic": {
         "rating": 7.9,
@@ -36,7 +36,7 @@ movie_sort_rating = {
 movie_sort_year = {
     "Finding Forrester": {
         "rating": 8.1,
-        "year": 2024
+        "year": 2025
     },
     "Spider Man": {
         "rating": 9.0,
@@ -47,6 +47,9 @@ movie_sort_year = {
         "year": 1997
     }
 }
+
+filter_movie = [{'Titanic': {'rating': 7.9, 'year': 1997}},
+                {'Spider Man': {'rating': 9.0, 'year': 2009}}]
 
 
 @pytest.fixture()
@@ -62,7 +65,7 @@ class TestMovie:
 
     @pytest.mark.parametrize("title, year, rating, expected_output",
                              [
-                                 ("Movie Jerome", 2024, 9.9, True),
+                                 ("Movie Jerome", 2025, 9.9, True),
                                  ("Movie Savanna", 2017, 9.9, True),
                                  ("Finding Jerome", 2017, 9.9, True)
                              ]
@@ -117,7 +120,7 @@ class TestMovie:
                              ]
                              )
     def test_search_movies(self, to_search, resource):
-        result = movie_service.service_find_movie("", to_search,
+        result = movie_service.service_find_movie(False, to_search,
                                                   constant.TEST_FILE_PATH)
         assert len(result[constant.PAYLOAD]) == 2
 
@@ -151,7 +154,6 @@ class TestMovie:
 
         assert result[constant.PAYLOAD] == movie_sort_rating
 
-
     # 9. Movies sorted by year    *********************************
 
     def test_sorted_movies_year(self, resource):
@@ -159,3 +161,17 @@ class TestMovie:
                                                    constant.TEST_FILE_PATH)
 
         assert result[constant.PAYLOAD] == movie_sort_year
+
+    # 10. Filter movies    *********************************
+
+    def test_filter_movies(self, resource):
+        minimum_rating = 0
+        start_year = 1990
+        end_year = 2024
+
+        result = movie_service.service_filter_movies(minimum_rating,
+                                                     start_year,
+                                                     end_year,
+                                                     constant.TEST_FILE_PATH)
+
+        assert result[constant.PAYLOAD] == filter_movie

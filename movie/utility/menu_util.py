@@ -1,12 +1,12 @@
 from movie.controller import movies_controller
-
 from movie.utility.print_util import print_menu
-
 from movie.utility import constant
 
 
 def select_options(user_choice: str) -> None:
     func_dict = {
+        f"{constant.EXIT}":
+            movies_controller.exit_movies_controller,
         f"{constant.LIST_MOVIES}":
             movies_controller.list_movies_controller,
         f"{constant.ADD_MOVIE}":
@@ -22,11 +22,11 @@ def select_options(user_choice: str) -> None:
         f"{constant.SEARCH_MOVIE}":
             movies_controller.search_movie_controller,
         f"{constant.MOVIES_SORTED_BY_RATING}":
-            movies_controller.list_movies_controller,
+            movies_controller.sort_movies_by_rating_controller,
         f"{constant.MOVIES_SORTED_BY_YEAR}":
-            movies_controller.list_movies_controller,
+            movies_controller.sort_movies_by_year_controller,
         f"{constant.FILTER_MOVIES}":
-            movies_controller.list_movies_controller,
+            movies_controller.service_filter_movies_controller,
     }
 
     option = return_options()
@@ -35,8 +35,9 @@ def select_options(user_choice: str) -> None:
         func_dict[user_choice]()
 
 
-def return_options():
+def return_options() -> str:
     option = [
+        constant.EXIT,
         constant.LIST_MOVIES,
         constant.ADD_MOVIE,
         constant.DELETE_MOVIE,
