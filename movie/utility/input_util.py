@@ -19,8 +19,10 @@ def input_delete_movie() -> str:
 def input_search_movie() -> str:
     return input("Enter part of movie name: ")
 
+
 def please_enter_to_continue() -> str:
     input("\nPress enter to continue ")
+
 
 def input_filter_movie() -> tuple:
     minimum_rating = input("Enter minimum rating (leave blank for no minimum rating): ")

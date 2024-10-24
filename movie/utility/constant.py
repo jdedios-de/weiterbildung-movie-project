@@ -1,6 +1,7 @@
 from pathlib import Path
 
 # OTHERS CONSTANTS
+
 PRODUCTION_FILE = "data.json"
 TEST_FILE = "temp_data.json"
 PACKAGE_REPOSITORY = "repository"
@@ -30,6 +31,7 @@ FILTER_MOVIES = "10"
 
 
 #RETURN CONSTANT
+
 RESULT = "result"
 MESSAGE = "message"
 PAYLOAD = "payload"

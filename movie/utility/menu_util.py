@@ -68,7 +68,7 @@ def call_menu() -> str:
                 raise ValueError()
 
         except ValueError:
-            print(f"Invalid choice\n")
+            print("Invalid choice\n")
         else:
             break
 

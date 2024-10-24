@@ -53,6 +53,7 @@ def print_movie_list(total_movies: int, movies: dict) -> None:
             for movie in movies]
     ))
 
+
 def print_filter_move(movies: dict) -> None:
     print_movie_search(movies)
 

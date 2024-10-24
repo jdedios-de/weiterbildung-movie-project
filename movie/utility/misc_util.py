@@ -12,7 +12,7 @@ def get_average_rating(result: list) -> float:
     return statistics.mean(result)
 
 
-def get_median_rating(result: list)  -> float:
+def get_median_rating(result: list) -> float:
     return statistics.median(result)
 
 
@@ -44,7 +44,9 @@ def get_stat_details(result: dict) -> tuple:
 
     return average_rating, best_movie, median_rating, worst_movie
 
-def validate_input_filter_movie(end_year: str, minimum_rating: str, start_year : str) -> tuple:
+
+def validate_input_filter_movie(end_year: str, minimum_rating: str,
+                                start_year: str) -> tuple:
     if minimum_rating == "":
         minimum_rating = 0
     if start_year == "":
@@ -54,3 +56,4 @@ def validate_input_filter_movie(end_year: str, minimum_rating: str, start_year :
         end_year = datetime.now().year
 
     return float(minimum_rating), int(start_year), int(end_year)
+
