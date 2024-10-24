@@ -2,6 +2,26 @@ from movie.controller import movies_controller
 from movie.utility.print_util import print_menu
 from movie.utility import constant
 
+"""
+This module manages the user interaction through a command-line menu for movie management.
+It allows users to select various options to perform actions related to movies,
+such as listing, adding, deleting, updating, and filtering movies.
+
+Functions:
+    select_options(user_choice: str) -> None:
+        Takes a user's choice as input and executes the corresponding movie controller function.
+        It uses a dictionary to map user choices to their respective functions.
+
+    return_options() -> list:
+        Returns a list of valid menu options for user input.
+        This list is used to validate the user's choices.
+
+    call_menu() -> str:
+        Displays the menu and prompts the user to enter a choice.
+        Validates the input and handles exceptions for invalid choices.
+        Continues to prompt the user until a valid choice is made or the user chooses to exit.
+        Returns the user's choice as a string.
+"""
 
 def select_options(user_choice: str) -> None:
     func_dict = {

@@ -1,6 +1,48 @@
 from movie.utility import constant, menu_util
 from movie.utility.input_util import please_enter_to_continue
 
+"""
+This module contains utility functions for printing
+and displaying information related to the movie database.
+
+Functions:
+    print_header() -> None:
+        Prints the header for the movies database.
+
+    print_menu() -> None:
+        Displays the main menu options for the user.
+
+    print_stats_movies(average_rating: float,
+                       median_rating: float,
+                       best_movie: list,
+                       worst_movie: list,
+                       payload) -> None:
+        Prints the average and median ratings, along with the best
+        and worst movies from the provided statistics.
+
+    print_movie_list(total_movies: int, movies: dict) -> None:
+        Displays the total number of movies and lists each movie's
+        title, year, and rating.
+
+    print_filter_move(movies: dict) -> None:
+        Prints the filtered movies; delegates to print_movie_search.
+
+    print_movie_search(movies: dict) -> None:
+        Displays a list of movies that match a search query, showing
+        each movie's title, year, and rating.
+
+    print_random_generated_movie(result: dict) -> None:
+        Prints a randomly selected movie for the user, displaying
+        its title and rating.
+
+    print_movie_does_not_exist(movie: str) -> None:
+        Notifies the user that a specified movie does not exist
+        in the database.
+
+    clear_menu() -> None:
+        Pauses the menu display and prompts the user to continue
+        before showing the menu again.
+"""
 
 def print_header() -> None:
     print("********** My Movies Database **********")
