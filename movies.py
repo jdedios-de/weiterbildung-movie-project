@@ -3,9 +3,9 @@ from movie.utility import menu_util
 """
 Main Module for Movie Database Application
 
-This module serves as the entry point for the Movie Database application. 
+This module serves as the entry point for the Movie Database application.
 
-The application utilizes a menu-driven approach, where users can 
+The application utilizes a menu-driven approach, where users can
 select options to perform specific actions on the movie database.
 
 Usage:
