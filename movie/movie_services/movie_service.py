@@ -8,7 +8,7 @@ from movie.utility import constant
 from movie.utility.misc_util import result_message
 
 """
-This module provides service functions to handle various operations 
+This module provides service functions to handle various operations
 related to movies. It interacts with the movie storage and utility
 functions to retrieve, manipulate, and return movie data in
 a structured format.
