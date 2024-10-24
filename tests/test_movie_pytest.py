@@ -6,10 +6,10 @@ from movie.utility import constant
 """
 Test Module for Movie Services
 
-This module contains unit tests for the movie management functionality 
-implemented in the `movie_service` module. It uses the pytest framework 
-to verify that various operations related to movie data are performed 
-correctly. 
+This module contains unit tests for the movie management functionality
+implemented in the `movie_service` module. It uses the pytest framework
+to verify that various operations related to movie data are performed
+correctly.
 
 The following functionalities are tested:
 - Adding a movie to the database
