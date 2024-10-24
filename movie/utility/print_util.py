@@ -1,6 +1,7 @@
 from movie.utility import constant, menu_util
 from movie.utility.input_util import please_enter_to_continue
 
+
 """
 This module contains utility functions for printing
 and displaying information related to the movie database.

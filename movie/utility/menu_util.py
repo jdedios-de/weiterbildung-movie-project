@@ -23,6 +23,7 @@ Functions:
         Returns the user's choice as a string.
 """
 
+
 def select_options(user_choice: str) -> None:
     func_dict = {
         f"{constant.EXIT}":

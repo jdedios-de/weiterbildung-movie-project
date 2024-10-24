@@ -28,6 +28,7 @@ Functions:
         Returns a tuple containing the minimum rating, start year, and end year as strings.
 """
 
+
 def input_add_movie() -> tuple:
     movie_name = input("Enter new movie name: ")
     movie_year = input("Enter new movie year: ")

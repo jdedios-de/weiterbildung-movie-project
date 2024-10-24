@@ -38,6 +38,7 @@ Constants:
         WORST_MOVIE (str): Key for the lowest-rated movie.
 """
 
+
 # OTHERS CONSTANTS
 
 PRODUCTION_FILE = "data.json"

@@ -26,6 +26,7 @@ Functions:
         This implements a singleton pattern to minimize repeated file access.
 """
 
+
 cached_data = None
 
 def load_data(file_path: WindowsPath) -> misc_util.result_message:

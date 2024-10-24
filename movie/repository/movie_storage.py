@@ -29,6 +29,7 @@ Functions:
         Updates the rating of an existing movie in the database and saves the updated list to the JSON file.
 """
 
+
 def list_movies(file_path: WindowsPath) -> misc_util.result_message:
     """
     Returns a dictionary of dictionaries that

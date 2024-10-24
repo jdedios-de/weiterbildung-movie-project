@@ -13,39 +13,40 @@ The controllers handle user input and pass it to the services, then display
 the results in a user-friendly manner.
 
 Functions:
-    exit_movies_controller(): 
+    exit_movies_controller():
         Prints a goodbye message and exits the movie menu.
 
-    list_movies_controller(): 
+    list_movies_controller():
         Retrieves and displays a list of all movies.
 
-    sort_movies_by_rating_controller(): 
+    sort_movies_by_rating_controller():
         Retrieves and displays a list of movies sorted by their rating.
 
-    service_filter_movies_controller(): 
+    service_filter_movies_controller():
         Filters movies based on user-provided rating and year range, and displays the results.
 
-    sort_movies_by_year_controller(): 
+    sort_movies_by_year_controller():
         Retrieves and displays a list of movies sorted by their release year.
 
-    stats_movies_controller(): 
+    stats_movies_controller():
         Displays statistics related to the movies (e.g., average rating, total count).
 
-    generate_random_movie_controller(): 
+    generate_random_movie_controller():
         Generates and displays a random movie from the list.
 
-    add_movie_controller(): 
+    add_movie_controller():
         Adds a new movie to the movie list based on user input (movie name, year, and rating).
 
-    update_movie_controller(): 
+    update_movie_controller():
         Updates the rating of an existing movie based on user input.
 
-    delete_movie_controller(): 
+    delete_movie_controller():
         Deletes a movie from the list based on user input.
 
-    search_movie_controller(): 
+    search_movie_controller():
         Searches for a movie by a partial name match and displays the results.
 """
+
 
 def exit_movies_controller() -> None:
     print("Bye!")

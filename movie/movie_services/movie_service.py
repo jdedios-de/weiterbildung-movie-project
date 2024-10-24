@@ -8,30 +8,37 @@ from movie.utility import constant
 from movie.utility.misc_util import result_message
 
 """
-This module provides service functions to handle various operations related to movies.
-It interacts with the movie storage and utility functions to retrieve, manipulate, 
-and return movie data in a structured format.
+This module provides service functions to handle various operations 
+related to movies. It interacts with the movie storage and utility
+functions to retrieve, manipulate, and return movie data in
+a structured format.
 
 Functions:
-    service_list_movies(option: str, file_path: WindowsPath) -> result_message:
-        Lists movies from the storage. Optionally sorts them by rating or year.
+    service_list_movies(option: str, file_path: WindowsPath) 
+    -> result_message:
+    Lists movies from the storage. Optionally sorts them by rating or year.
 
-    service_filter_movies(minimum_rating, start_year, end_year, file_path: WindowsPath) -> result_message:
+    service_filter_movies(minimum_rating,
+    start_year, end_year, file_path: WindowsPath) -> result_message:
         Filters movies based on minimum rating and a year range.
 
     service_search_movies(file_path: WindowsPath) -> result_message:
         Searches for movies in the storage without any filters.
 
-    service_find_movie(is_exact: bool, title: str, file_path: WindowsPath) -> result_message:
-        Finds a movie by its title. Can search for an exact match or a partial match.
+    service_find_movie(is_exact: bool, title: str,
+    file_path: WindowsPath) -> result_message:
+        Finds a movie by its title. Can search foran exact match 
+        or a partial match.
 
     service_stat_movies(file_path: WindowsPath) -> result_message:
-        Retrieves movie statistics, including average rating, median rating, best and worst movie.
+        Retrieves movie statistics, including average rating,
+        median rating, best and worst movie.
 
     service_random_movie(file_path: WindowsPath) -> result_message:
         Returns a randomly selected movie from the list.
 
-    service_add_movie(title: str, year: str, rating: str, file_path: WindowsPath):
+    service_add_movie(title: str, year: str, rating: str,
+    file_path: WindowsPath):
         Adds a new movie to the movie list with a title, year, and rating.
 
     service_delete_movie(title: str, file_path: WindowsPath):
