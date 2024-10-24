@@ -1,4 +1,5 @@
-from movie.utility import constant
+from movie.utility import constant, menu_util
+from movie.utility.input_util import please_enter_to_continue
 
 
 def print_header():
@@ -22,7 +23,7 @@ def print_menu():
 
 def print_stats_movies(average_rating, median_rating, best_movie, worst_movie,
                        payload):
-    print(f"Average rating: {average_rating:.1f}")
+    print(f"\nAverage rating: {average_rating:.1f}")
     print(f"Median rating: {median_rating:.1f}")
 
     print("\n".join(
@@ -63,3 +64,12 @@ def print_movie_search(movies):
 def print_random_generated_movie(result):
     print(f"Your movie for tonight: {result[constant.PAYLOAD][0]}, "
           f"it's rated {result[constant.PAYLOAD][1][constant.RATING_KEY]}")
+
+
+def print_movie_does_not_exist(movie):
+    print(f"Movie {movie} doesn't exist!\n")
+
+
+def clear_menu():
+    please_enter_to_continue()
+    menu_util.select_options(menu_util.call_menu())

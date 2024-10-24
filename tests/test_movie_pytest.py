@@ -117,7 +117,7 @@ class TestMovie:
                              ]
                              )
     def test_search_movies(self, to_search, resource):
-        result = movie_service.service_find_movie(to_search,
+        result = movie_service.service_find_movie("", to_search,
                                                   constant.TEST_FILE_PATH)
         assert len(result[constant.PAYLOAD]) == 2
 
