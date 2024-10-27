@@ -49,10 +49,25 @@ Functions:
 
 
 def exit_movies_controller() -> None:
+    """
+    Exit the movie application.
+
+    This function prints a goodbye message to the console
+    and exits the application.
+    """
     print("Bye!")
 
 
 def list_movies_controller() -> None:
+    """
+    List all movies from the service.
+
+    This function retrieves a list of movies using the movie_service,
+    and then prints the list to the console.
+
+    Returns:
+        None
+    """
     result = movie_service.service_list_movies("",
                                                constant.PRODUCTION_FILE_PATH)
 
@@ -62,6 +77,15 @@ def list_movies_controller() -> None:
 
 
 def sort_movies_by_rating_controller() -> None:
+    """
+    Sort and list movies by their ratings.
+
+    This function retrieves a list of movies sorted by rating
+    from the movie_service, then prints the sorted list to the console.
+
+    Returns:
+        None
+    """
     result = movie_service.service_list_movies(constant.RATING_KEY,
                                                constant.PRODUCTION_FILE_PATH)
 
@@ -71,6 +95,17 @@ def sort_movies_by_rating_controller() -> None:
 
 
 def service_filter_movies_controller() -> None:
+    """
+    Filter and display movies based on rating and year range.
+
+    This function prompts the user to input a minimum rating and a range of years
+    to filter movies. The input is then validated, and the filtered movies are
+    retrieved from the movie_service. Finally, the filtered movie list is printed
+    to the console.
+
+    Returns:
+        None
+    """
     (input_minimum_rating,
      input_start_year, input_end_year) = input_filter_movie()
 
@@ -91,6 +126,15 @@ def service_filter_movies_controller() -> None:
 
 
 def sort_movies_by_year_controller() -> None:
+    """
+    Sort and display movies by their release year.
+
+    This function retrieves a list of movies sorted by release year
+    from the movie_service, then prints the sorted list to the console.
+
+    Returns:
+        None
+    """
     result = movie_service.service_list_movies(constant.YEAR_KEY,
                                                constant.PRODUCTION_FILE_PATH)
 
@@ -100,6 +144,15 @@ def sort_movies_by_year_controller() -> None:
 
 
 def stats_movies_controller():
+    """
+    Retrieve and display movie statistics.
+
+    This function fetches statistical data about movies from the movie_service
+    and prints it to the console.
+
+    Returns:
+        None
+    """
     result = movie_service.service_stat_movies(constant.PRODUCTION_FILE_PATH)
     print_stats_movies(result[constant.PAYLOAD][0],
                        result[constant.PAYLOAD][1],
@@ -111,6 +164,15 @@ def stats_movies_controller():
 
 
 def generate_random_movie_controller():
+    """
+    Generate and display a random movie.
+
+    This function retrieves a randomly selected movie from the movie_service
+    and displays it using the print_util module.
+
+    Returns:
+        None
+    """
     result = movie_service.service_random_movie(constant.PRODUCTION_FILE_PATH)
 
     print_util.print_random_generated_movie(result)
@@ -119,6 +181,17 @@ def generate_random_movie_controller():
 
 
 def add_movie_controller() -> None:
+    """
+    Add a new movie to the collection.
+
+    This function prompts the user to input details for a new movie
+    (name, year, and rating) and attempts to add it to the collection
+    through the movie_service. If the addition is successful, a confirmation
+    message is printed. In case of an error, a failure message is displayed.
+
+    Returns:
+        None
+    """
     try:
         movie_name, movie_year, movie_rating = input_util.input_add_movie()
 
@@ -135,6 +208,19 @@ def add_movie_controller() -> None:
 
 
 def update_movie_controller() -> None:
+    """
+    Update the rating of an existing movie.
+
+    This function prompts the user to input the name of a movie
+    to update. It checks if the movie exists in the collection
+    using the movie_service. If found, the user is prompted
+    to enter a new rating, and the movie's rating is updated.
+    Success and failure messages are printed based on the result
+    of the update operation.
+
+    Returns:
+        None
+    """
     while True:
         try:
             movie_name = input_util.input_update_movie()
@@ -167,6 +253,18 @@ def update_movie_controller() -> None:
 
 
 def delete_movie_controller() -> None:
+    """
+    Delete a movie from the collection.
+
+    This function prompts the user to input the name of a movie to delete.
+    It attempts to remove the specified movie using the movie_service.
+    If the movie is successfully deleted, a confirmation message is printed.
+    If the movie does not exist or the deletion fails, appropriate
+    error messages are displayed.
+
+    Returns:
+        None
+    """
     while True:
         try:
             movie_name = input_util.input_delete_movie()
@@ -193,6 +291,16 @@ def delete_movie_controller() -> None:
 
 
 def search_movie_controller() -> None:
+    """
+    Search for movies by a partial name match.
+
+    This function prompts the user to input a partial movie
+    name to search for. It retrieves a list of movies matching
+    the input string using the movie_service and displays the results.
+
+    Returns:
+        None
+    """
     part_movie_name = input_util.input_search_movie()
 
     result = movie_service.service_find_movie(False, part_movie_name,
