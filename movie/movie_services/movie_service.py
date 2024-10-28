@@ -194,9 +194,10 @@ def service_stat_movies(file_path: WindowsPath) -> result_message:
     """
     Generate and retrieve movie statistics.
 
-    This function calculates various statistics about the movies in storage, including
-    the average rating, median rating, best movie, and worst movie. It retrieves the
-    necessary data from the movie_storage and formats the statistics into a result message.
+    This function calculates various statistics about the movies in storage,
+    including the average rating, median rating, best movie, and worst movie.
+    It retrieves the necessary data from the movie_storage and formats the
+    statistics into a result message.
 
     Parameter:
         file_path (WindowsPath): The path to the file containing movie data.

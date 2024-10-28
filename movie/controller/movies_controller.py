@@ -52,8 +52,11 @@ def exit_movies_controller() -> None:
     """
     Exit the movie application.
 
-    This function prints a goodbye message to the console
+    This function prints "Bye!" to the console
     and exits the application.
+
+    Returns:
+    None
     """
     print("Bye!")
 
