@@ -25,6 +25,16 @@ Functions:
 
 
 def select_options(user_choice: str) -> None:
+    """
+    Execute the appropriate controller function based on user choice.
+
+    This function matches the user's input with a predefined set of options,
+    calling the corresponding controller function if the input is valid.
+
+    Parameter:
+        user_choice (str): The option selected by the user, which should match
+                           a key in the function dictionary.
+    """
     func_dict = {
         f"{constant.EXIT}":
             movies_controller.exit_movies_controller,
@@ -57,6 +67,12 @@ def select_options(user_choice: str) -> None:
 
 
 def return_options() -> str:
+    """
+    Retrieve a list of available menu options.
+
+    Returns:
+        list: A list of constant values representing each menu option.
+    """
     option = [
         constant.EXIT,
         constant.LIST_MOVIES,
@@ -74,6 +90,15 @@ def return_options() -> str:
 
 
 def call_menu() -> str:
+    """
+    Display the main menu and prompt the user to select an option.
+
+    Prompts the user until a valid choice is entered, returning
+    the selected option. Terminates if the exit (0) option is chosen.
+
+    Returns:
+        str: The user's chosen menu option.
+    """
     while True:
         try:
             print_menu()

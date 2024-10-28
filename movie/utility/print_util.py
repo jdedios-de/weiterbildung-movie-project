@@ -1,7 +1,6 @@
 from movie.utility import constant, menu_util
 from movie.utility.input_util import please_enter_to_continue
 
-
 """
 This module contains utility functions for printing
 and displaying information related to the movie database.
@@ -47,10 +46,12 @@ Functions:
 
 
 def print_header() -> None:
+    """Print the header for the movies database."""
     print("********** My Movies Database **********")
 
 
 def print_menu() -> None:
+    """Display the menu options for the user."""
     print("Menu:")
     print("0. Exit")
     print("1. List movies")
@@ -70,9 +71,20 @@ def print_stats_movies(average_rating: float,
                        best_movie: list,
                        worst_movie: list,
                        payload) -> None:
+    """
+    Display statistics about the movies.
+
+    Parameters:
+        average_rating (float): The average rating of the movies.
+        median_rating (float): The median rating of the movies.
+        best_movie (list): A list of the best movie(s).
+        worst_movie (list): A list of the worst movie(s).
+        payload (dict): The dictionary containing movie details.
+    """
     print(f"\nAverage rating: {average_rating:.1f}")
     print(f"Median rating: {median_rating:.1f}")
 
+    # Display best movies
     print("\n".join(
         [
             f"Best movie: {movie}, "
@@ -80,6 +92,7 @@ def print_stats_movies(average_rating: float,
             for movie in best_movie]
     ))
 
+    # Display worst movies
     print("\n".join(
         [
             f"Worst movie: {movie}, "
@@ -89,6 +102,13 @@ def print_stats_movies(average_rating: float,
 
 
 def print_movie_list(total_movies: int, movies: dict) -> None:
+    """
+    Display a list of movies with their details.
+
+    Parameters:
+        total_movies (int): The total number of movies.
+        movies (dict): The dictionary containing movie details.
+    """
     print(f"{total_movies} movies in total")
     print("\n".join(
         [
@@ -99,10 +119,22 @@ def print_movie_list(total_movies: int, movies: dict) -> None:
 
 
 def print_filter_move(movies: dict) -> None:
+    """
+    Display filtered movie search results.
+
+    Parameter:
+        movies (dict): The filtered movie details.
+    """
     print_movie_search(movies)
 
 
 def print_movie_search(movies: dict) -> None:
+    """
+    Display the search results for movies.
+
+    Parameter:
+        movies (dict): The dictionary containing the search results.
+    """
     print("\n".join(
         [
             f"{mov} ({details[constant.YEAR_KEY]}): "
@@ -113,14 +145,27 @@ def print_movie_search(movies: dict) -> None:
 
 
 def print_random_generated_movie(result: dict) -> None:
+    """
+    Display a randomly generated movie.
+
+    Parameter:
+        result (dict): The result containing the randomly chosen movie.
+    """
     print(f"Your movie for tonight: {result[constant.PAYLOAD][0]}, "
           f"it's rated {result[constant.PAYLOAD][1][constant.RATING_KEY]}")
 
 
 def print_movie_does_not_exist(movie: str) -> None:
+    """
+    Notify that a specific movie does not exist.
+
+    Parameter:
+        movie (str): The title of the movie that doesn't exist.
+    """
     print(f"Movie {movie} doesn't exist!\n")
 
 
 def clear_menu() -> None:
+    """Pause the program and display the menu."""
     please_enter_to_continue()
     menu_util.select_options(menu_util.call_menu())

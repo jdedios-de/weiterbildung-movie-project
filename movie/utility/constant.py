@@ -48,6 +48,8 @@ PACKAGE_REPOSITORY = "repository"
 RATING_KEY = "rating"
 YEAR_KEY = "year"
 
+EMPTY = ""
+
 # DEPENDENCY INJECTION
 
 PRODUCTION_FILE_PATH = Path(__file__).parent.parent / PACKAGE_REPOSITORY / PRODUCTION_FILE

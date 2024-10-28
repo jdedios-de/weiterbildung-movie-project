@@ -32,22 +32,15 @@ Functions:
 
 def list_movies(file_path: WindowsPath) -> misc_util.result_message:
     """
-    Returns a dictionary of dictionaries that
-    contains the movies information in the database.
+    Retrieve the list of movies from storage.
 
-    The function loads the information from the JSON
-    file and returns the data.
+    Parameter:
+        file_path (WindowsPath): The path to the file containing movie data.
 
-    For example, the function may return:
-    {
-      "Titanic": {
-        "rating": 9,
-        "year": 1999
-      },
-      "..." {
-        ...
-      },
-    }
+    Returns:
+        misc_util.result_message: A result message containing a success flag,
+                                  a message string, and a selected
+                                  movies from the storage.
     """
     return data_util.fetch_data(file_path)
 
@@ -55,11 +48,22 @@ def list_movies(file_path: WindowsPath) -> misc_util.result_message:
 def add_movie(title: str, year: str, rating: str,
               file_path: WindowsPath) -> misc_util.result_message:
     """
-    Adds a movie to the movies database.
-    Loads the information from the JSON file, add the movie,
-    and saves it. The function doesn't need to validate the input.
-    """
+    Add a new movie to the storage.
 
+    This function retrieves the existing movie data from the specified
+    file path, adds a new movie with the given title, year, and rating, and
+    then writes the updated movie data back to the file.
+
+    Parameters:
+        title (str): The title of the movie to be added.
+        year (str): The release year of the movie.
+        rating (str): The rating of the movie.
+        file_path (WindowsPath): The path to the file containing movie data.
+
+    Returns:
+        misc_util.result_message: A result message containing a success flag,
+                                  a message string, and a payload
+    """
     details: misc_util.result_message = data_util.fetch_data(file_path)
 
     details[constant.PAYLOAD][title] = data_util.build_to_add_dict(year,
@@ -71,9 +75,20 @@ def add_movie(title: str, year: str, rating: str,
 def delete_movie(title: str,
                  file_path: WindowsPath) -> misc_util.result_message:
     """
-    Deletes a movie from the movies database.
-    Loads the information from the JSON file, deletes the movie,
-    and saves it. The function doesn't need to validate the input.
+    Delete a movie from the storage.
+
+    This function removes a movie with the specified title from the storage.
+    It first retrieves the current movie data from the given file path,
+    deletes the entry matching the specified title, and then writes the
+    updated data back to the file.
+
+    Parameters:
+        title (str): The title of the movie to be deleted.
+        file_path (WindowsPath): The path to the file containing movie data.
+
+    Returns:
+        misc_util.result_message: A result message containing a success flag,
+                                  a message string, and a payload
     """
     details: misc_util.result_message = data_util.fetch_data(file_path)
 
@@ -83,19 +98,56 @@ def delete_movie(title: str,
 
 
 def search_movies(file_path: WindowsPath) -> misc_util.result_message:
+    """
+    Retrieve all movies from storage.
+
+    This function fetches the complete movie data from the specified file path
+    to facilitate movie searching.
+
+    Args:
+        file_path (WindowsPath): The path to the file containing movie data.
+
+    Returns:
+        misc_util.result_message: A result message containing a success flag,
+                                  a message string, and a selected
+                                  movies from the storage.
+    """
     return data_util.fetch_data(file_path)
 
 
 def stats_movies(file_path: WindowsPath) -> misc_util.result_message:
+    """
+    Retrieve movie statistics
+
+    Parameter:
+        file_path (WindowsPath): The path to the file containing movie data.
+
+    Returns:
+        misc_util.result_message: A result message containing a success flag,
+                                  a message string, and a payload of movies
+                                  statistics.
+    """
     return data_util.fetch_data(file_path)
 
 
 def update_movie(title: str, rating: str,
                  file_path: WindowsPath) -> misc_util.result_message:
     """
-    Updates a movie from the movies database.
-    Loads the information from the JSON file, updates the movie,
-    and saves it. The function doesn't need to validate the input.
+    Update the rating of an existing movie.
+
+    This function updates the rating of a specified movie title in the storage.
+    It retrieves the current movie data, modifies the rating for the specified
+    title, and writes the updated data back to the file.
+
+    Parameters:
+        title (str): The title of the movie to be updated.
+        rating (str): The new rating of the movie.
+        file_path (WindowsPath): The path to the file containing movie data.
+
+    Returns:
+        misc_util.result_message: A result message indicating the success or
+                                  failure of the operation, including
+                                  the new rating.
     """
     details = data_util.fetch_data(file_path)
 

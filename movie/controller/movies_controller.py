@@ -98,10 +98,10 @@ def service_filter_movies_controller() -> None:
     """
     Filter and display movies based on rating and year range.
 
-    This function prompts the user to input a minimum rating and a range of years
-    to filter movies. The input is then validated, and the filtered movies are
-    retrieved from the movie_service. Finally, the filtered movie list is printed
-    to the console.
+    This function prompts the user to input a minimum rating and
+    a range of years to filter movies. The input is then validated,
+    and the filtered movies are retrieved from the movie_service.
+    Finally, the filtered movie list is printed to the console.
 
     Returns:
         None

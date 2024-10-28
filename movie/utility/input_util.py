@@ -30,6 +30,16 @@ Functions:
 
 
 def input_add_movie() -> tuple:
+    """
+    Prompt user to input details for adding a new movie.
+
+    This function requests input from the user for the movie's name,
+    release year, and rating.
+
+    Returns:
+        tuple: A tuple containing the movie name (str), movie year (str),
+               and movie rating (str).
+    """
     movie_name = input("Enter new movie name: ")
     movie_year = input("Enter new movie year: ")
     movie_rating = input("Enter new movie rating: ")
@@ -38,24 +48,59 @@ def input_add_movie() -> tuple:
 
 
 def input_update_movie() -> str:
+    """
+    Prompt user to input the name of a movie to update.
+
+    Returns:
+        str: The name of the movie to update.
+    """
     movie_name = input("Enter movie name: ")
     return movie_name
 
 
 def input_delete_movie() -> str:
+    """
+    Prompt user to input the name of a movie to delete.
+
+    Returns:
+        str: The name of the movie to delete.
+    """
     return input("Enter movie name to delete: ")
 
 
 def input_search_movie() -> str:
+    """
+    Prompt user to input part of a movie name for search purposes.
+
+    Returns:
+        str: A partial or full name of the movie to search.
+    """
     return input("Enter part of movie name: ")
 
 
 def please_enter_to_continue() -> str:
+    """
+    Pause execution and prompt user to press enter to continue.
+
+    Returns:
+        str: Empty string, as this function waits for user input to proceed.
+    """
     input("\nPress enter to continue ")
 
 
 def input_filter_movie() -> tuple:
-    minimum_rating = input("Enter minimum rating (leave blank for no minimum rating): ")
+    """
+    Prompt user to input filtering criteria for movies.
+
+    This function collects user input for minimum rating, start year,
+    and end year to filter movies based on these criteria.
+
+    Returns:
+        tuple: A tuple containing the minimum rating (str), start year (str),
+               and end year (str).
+    """
+    minimum_rating = input(
+        "Enter minimum rating (leave blank for no minimum rating): ")
     start_year = input("Enter start year (leave blank for no start year): ")
     end_year = input("Enter end year (leave blank for no end year): ")
 
