@@ -110,11 +110,11 @@ def get_worst_movie(result: dict) -> list:
     Returns:
         list: A list of movie titles with the lowest rating.
     """
-    max_rating = min(
+    min_rating = min(
         [float(result[movie][constant.RATING_KEY]) for movie in result])
 
     return [movie for movie in result
-            if max_rating == float(result[movie][constant.RATING_KEY])]
+            if min_rating == float(result[movie][constant.RATING_KEY])]
 
 
 def get_stat_details(result: dict) -> tuple:
