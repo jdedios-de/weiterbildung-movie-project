@@ -74,7 +74,7 @@ movie_sort_year = {
 }
 
 filter_movie = [{'Titanic': {'rating': 7.9, 'year': 1997}},
-                {'Spider Man': {'rating': 9.1, 'year': 2009}}]
+                {'Spider Man': {'rating': 9.0, 'year': 2009}}]
 
 
 @pytest.fixture()
