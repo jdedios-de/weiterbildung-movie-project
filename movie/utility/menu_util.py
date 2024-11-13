@@ -118,4 +118,4 @@ def call_menu() -> str:
         else:
             break
 
-    return input_available_commands
+        return input_available_commands
