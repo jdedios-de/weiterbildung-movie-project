@@ -151,7 +151,7 @@ def print_random_generated_movie(result: dict) -> None:
     Parameter:
         result (dict): The result containing the randomly chosen movie.
     """
-    print(f"Your movie for tonight: {result[constant.PAYLOAD].key}, "
+    print(f"Your movie for tonight: {result[constant.PAYLOAD][0]}, "
           f"it's rated {result[constant.PAYLOAD][1][constant.RATING_KEY]}")
 
 
