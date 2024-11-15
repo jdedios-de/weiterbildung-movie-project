@@ -96,7 +96,8 @@ class TestMovie:
                              ]
                              )
     def test_add_movie(self, title, year, rating, expected_output, resource):
-        result = movie_service.service_add_movie(title, year, rating,
+        result = movie_service.service_add_movie(title, str(year),
+                                                 str(rating),
                                                  constant.TEST_FILE_PATH)
         assert result["result"] == expected_output
 
@@ -109,10 +110,10 @@ class TestMovie:
                              ]
                              )
     def test_update_movie(self, title, rating, expected_output, resource):
-        result = movie_service.service_update_movie(title, rating,
+        result = movie_service.service_update_movie(title, str(rating),
                                                     constant.TEST_FILE_PATH)
 
-        assert result["rating"] == rating
+        assert result["rating"] == str(rating)
         assert result["result"] == expected_output
 
     # 5. Stats          *********************************

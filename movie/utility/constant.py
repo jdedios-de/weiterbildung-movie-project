@@ -38,23 +38,32 @@ Constants:
         WORST_MOVIE (str): Key for the lowest-rated movie.
 """
 
-
 # OTHERS CONSTANTS
 
-PRODUCTION_FILE = "data.json"
+JSON_PRODUCTION_FILE = "data.json"
+CSV_PRODUCTION_FILE = "data.csv"
 TEST_FILE = "temp_data.json"
 PACKAGE_REPOSITORY = "repository"
 
 RATING_KEY = "rating"
 YEAR_KEY = "year"
+TITLE_KEY = "title"
 
 EMPTY = ""
 
 # DEPENDENCY INJECTION
 
-PRODUCTION_FILE_PATH = Path(__file__).parent.parent / PACKAGE_REPOSITORY / PRODUCTION_FILE
+JSON_PRODUCTION_FILE_PATH = Path(
+    __file__).parent.parent / PACKAGE_REPOSITORY / JSON_PRODUCTION_FILE
+
+CSV_PRODUCTION_FILE_PATH = Path(
+    __file__).parent.parent / PACKAGE_REPOSITORY / CSV_PRODUCTION_FILE
 
 TEST_FILE_PATH = Path(__file__).parent.parent / PACKAGE_REPOSITORY / TEST_FILE
+
+# ANIMALS API
+
+MOVIE_API_URL = "https://www.omdbapi.com/"
 
 # USER INPUT CONSTANTS
 
@@ -69,7 +78,6 @@ SEARCH_MOVIE = "7"
 MOVIES_SORTED_BY_RATING = "8"
 MOVIES_SORTED_BY_YEAR = "9"
 FILTER_MOVIES = "10"
-
 
 # RETURN CONSTANT
 
