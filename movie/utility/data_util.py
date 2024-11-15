@@ -1,7 +1,8 @@
+import csv
 import json
 from pathlib import WindowsPath
 
-from movie.utility import misc_util
+from movie.utility import misc_util, constant
 
 """
 This module provides utility functions for loading, writing, and managing movie data stored in JSON format.
@@ -45,9 +46,19 @@ def load_data(file_path: WindowsPath) -> misc_util.result_message:
                                   or failure of the file loading operation,
                                   along with the payload data if successful.
     """
+    payload = {}
+
     try:
-        with open(file_path, "r") as handle:
-            payload = json.load(handle)
+        if "json" in file_path.name:
+            with open(file_path, "r") as handle:
+                payload = json.load(handle)
+        elif "csv" in file_path.name:
+            with open(file_path, mode='r') as handle:
+                csv_reader = csv.DictReader(handle)
+                for row in list(csv_reader):
+                    payload.update(build_dict(row[constant.TITLE_KEY],
+                                              row[constant.YEAR_KEY],
+                                              row[constant.RATING_KEY]))
     except FileNotFoundError:
         return (misc_util.result_message
                 (False,
@@ -85,8 +96,18 @@ def write_data(details: dict,
                                   failure of the file write operation.
     """
     try:
-        with open(file_path, 'w') as write_to_file:
-            write_to_file.write(json.dumps(details))
+        if "json" in file_path.name:
+            with open(file_path, 'w') as handle:
+                handle.write(json.dumps(details))
+        elif "csv" in file_path.name:
+            with open(file_path, mode='w', newline='') as handle:
+                csv_writer = csv.writer(handle)
+                csv_writer.writerow(['title', 'rating', 'year'])
+                for key, value in details.items():
+                    csv_writer.writerow([key,
+                            value[constant.RATING_KEY],
+                            value[constant.YEAR_KEY]])
+
     except FileNotFoundError:
         return (misc_util.result_message
                 (False,
