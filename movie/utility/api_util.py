@@ -60,3 +60,5 @@ def get_movie_data_from_api(movie_title: str) -> json:
                 (False,
                  f"{response.json()}",
                  f": {response.json()}"))
+    except Exception:
+            raise Exception("Please check if the .env file exists or if the key exists.")
