@@ -29,22 +29,8 @@ Functions:
 """
 
 
-def input_add_movie() -> tuple:
-    """
-    Prompt user to input details for adding a new movie.
-
-    This function requests input from the user for the movie's name,
-    release year, and rating.
-
-    Returns:
-        tuple: A tuple containing the movie name (str), movie year (str),
-               and movie rating (str).
-    """
-    movie_name = input("Enter new movie name: ")
-    movie_year = input("Enter new movie year: ")
-    movie_rating = input("Enter new movie rating: ")
-
-    return movie_name, movie_year, movie_rating
+def input_add_movie() -> str:
+    return input("Enter new movie name: ")
 
 
 def input_update_movie() -> str:

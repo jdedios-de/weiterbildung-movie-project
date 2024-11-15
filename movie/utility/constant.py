@@ -61,6 +61,10 @@ CSV_PRODUCTION_FILE_PATH = Path(
 
 TEST_FILE_PATH = Path(__file__).parent.parent / PACKAGE_REPOSITORY / TEST_FILE
 
+# ANIMALS API
+
+MOVIE_API_URL = "https://www.omdbapi.com/"
+
 # USER INPUT CONSTANTS
 
 EXIT = "0"

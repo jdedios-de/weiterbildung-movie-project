@@ -91,8 +91,7 @@ def delete_movie(title: str,
                                   a message string, and a payload
     """
     details: misc_util.result_message = data_util.fetch_data(file_path)
-
-    del details[constant.PAYLOAD][title]
+    del details[constant.PAYLOAD][title.title()]
 
     return data_util.write_data(details[constant.PAYLOAD], file_path)
 

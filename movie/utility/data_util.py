@@ -105,8 +105,8 @@ def write_data(details: dict,
                 csv_writer.writerow(['title', 'rating', 'year'])
                 for key, value in details.items():
                     csv_writer.writerow([key,
-                            value[constant.RATING_KEY],
-                            value[constant.YEAR_KEY]])
+                                         value[constant.RATING_KEY],
+                                         value[constant.YEAR_KEY]])
 
     except FileNotFoundError:
         return (misc_util.result_message
@@ -126,6 +126,11 @@ def write_data(details: dict,
         return (misc_util.result_message
                 (True, "File written successfully.",
                  ""))
+
+
+def build_dict_poster(title: str, year: str, rating: str,
+                      poster: str) -> dict:
+    return {title:{"rating": float(rating), "year": int(year), "poster": poster}}
 
 
 def build_dict(title: str, year: str, rating: str) -> dict:

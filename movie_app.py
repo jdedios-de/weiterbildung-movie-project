@@ -1,5 +1,5 @@
 from movie.movie_services.istorage import IStorage
-from movie.utility import constant, input_util
+from movie.utility import constant, input_util, api_util
 from movie.utility.input_util import input_filter_movie
 from movie.utility.misc_util import validate_input_filter_movie
 
@@ -203,17 +203,26 @@ class MovieApp:
 
     def _command_add_movie(self):
 
-        movie_name, movie_year, movie_rating = input_util.input_add_movie()
+        movie_name = input_util.input_add_movie()
 
         try:
-            result = self.get_storage().add_movie(movie_name, movie_year,
-                                                  movie_rating, "")
+            movie_return = api_util.get_movie_data_from_api(movie_name)
 
-            if result["result"]:
-                print(f"Movie {movie_name} successfully added")
+            if not movie_return[constant.RESULT]:
+                raise Exception(movie_return[constant.PAYLOAD])
+
+            for key, value in movie_return[constant.PAYLOAD].items():
+                result = self.get_storage().add_movie(key,
+                                                      value[
+                                                          constant.YEAR_KEY],
+                                                      value[
+                                                          constant.RATING_KEY],
+                                                      "")
+                if result["result"]:
+                    print(f"Movie {movie_name} successfully added")
 
         except Exception as e:
-            print(f"Movie was not added: {e}")
+            print(f"Didn't find movie {movie_name} in the API: {e}")
         finally:
             please_enter_to_continue()
             select_options(self, call_menu())

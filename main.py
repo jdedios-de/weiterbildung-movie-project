@@ -4,7 +4,7 @@ from movie_app import MovieApp
 
 
 def main():
-    storage = StorageCsv(constant.CSV_PRODUCTION_FILE_PATH)
+    storage = StorageCsv(constant.JSON_PRODUCTION_FILE_PATH)
     movie_app = MovieApp(storage)
     movie_app.run()
 
