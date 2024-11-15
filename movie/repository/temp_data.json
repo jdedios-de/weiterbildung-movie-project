@@ -1,1 +1,14 @@
-{"Titanic": {"rating": 7.9, "year": 1997}, "Spider Man": {"rating": 9.0, "year": 2009}, "Finding Forrester": {"rating": 8.1, "year": 2025}}
+{
+  "Titanic": {
+    "rating": 7.9,
+    "year": 1997
+  },
+  "Spider Man": {
+    "rating": 9.0,
+    "year": 2009
+  },
+  "Finding Forrester": {
+    "rating": 8.1,
+    "year": 2025
+  }
+}

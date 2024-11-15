@@ -1,1 +1,18 @@
-{"Titanic": {"rating": 9.8, "year": 1997}, "The Shawshank Redemption": {"rating": 9.2, "year": 1994}, "Finding Forrester": {"rating": 9.9, "year": 2000}, "Test": {"rating": 4.5, "year": 1985}}
+{
+  "Titanic": {
+    "rating": 9.8,
+    "year": 1997
+  },
+  "The Shawshank Redemption": {
+    "rating": 9.2,
+    "year": 1994
+  },
+  "Finding Forrester": {
+    "rating": 9.9,
+    "year": 2000
+  },
+  "Test": {
+    "rating": 5.0,
+    "year": 2024
+  }
+}

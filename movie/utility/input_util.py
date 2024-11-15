@@ -78,7 +78,7 @@ def input_search_movie() -> str:
     return input("Enter part of movie name: ")
 
 
-def please_enter_to_continue() -> str:
+def please_enter_to_continue() -> None:
     """
     Pause execution and prompt user to press enter to continue.
 

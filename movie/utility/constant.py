@@ -38,7 +38,6 @@ Constants:
         WORST_MOVIE (str): Key for the lowest-rated movie.
 """
 
-
 # OTHERS CONSTANTS
 
 PRODUCTION_FILE = "data.json"
@@ -52,7 +51,8 @@ EMPTY = ""
 
 # DEPENDENCY INJECTION
 
-PRODUCTION_FILE_PATH = Path(__file__).parent.parent / PACKAGE_REPOSITORY / PRODUCTION_FILE
+PRODUCTION_FILE_PATH = Path(
+    __file__).parent.parent / PACKAGE_REPOSITORY / PRODUCTION_FILE
 
 TEST_FILE_PATH = Path(__file__).parent.parent / PACKAGE_REPOSITORY / TEST_FILE
 
@@ -69,7 +69,6 @@ SEARCH_MOVIE = "7"
 MOVIES_SORTED_BY_RATING = "8"
 MOVIES_SORTED_BY_YEAR = "9"
 FILTER_MOVIES = "10"
-
 
 # RETURN CONSTANT
 
