@@ -1,13 +1,13 @@
 from pathlib import WindowsPath
 
-from movie.movie_services.istorage import IStorage
+from movie.storage.istorage import IStorage
 from movie.movie_services.movie_service import service_list_movies, \
     service_add_movie, service_delete_movie, service_update_movie, \
     service_find_movie, service_stat_movies, service_random_movie, \
     service_filter_movies
 
 
-class StorageCsv(IStorage):
+class StorageJson(IStorage):
     def __init__(self, file_path: WindowsPath):
         self.__file_path = file_path
 
@@ -24,10 +24,13 @@ class StorageCsv(IStorage):
         return service_list_movies("",
                                    self.get_file_path())
 
-    def add_movie(self, title, year, rating, poster):
+    def add_movie(self, title, year, rating, poster, notes, imdbid):
         return service_add_movie(title,
                                  year,
                                  rating,
+                                 poster,
+                                 notes,
+                                 imdbid,
                                  self.get_file_path())
 
     def delete_movie(self, title):

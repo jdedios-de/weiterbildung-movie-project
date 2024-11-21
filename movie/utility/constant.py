@@ -43,15 +43,23 @@ Constants:
 JSON_PRODUCTION_FILE = "data.json"
 CSV_PRODUCTION_FILE = "data.csv"
 TEST_FILE = "temp_data.json"
-PACKAGE_REPOSITORY = "repository"
+PACKAGE_REPOSITORY = "data"
+STATIC_DIRECTORY = "_static"
+TEMPLATE_HTML_FILE = "index_template.html"
+INDEX_HTML_FILE = "index.html"
 
 RATING_KEY = "rating"
 YEAR_KEY = "year"
 TITLE_KEY = "title"
+POSTER_KEY = "poster"
+NOTES_KEY = "notes"
+IMDBID_KEY = "imdbid"
 
 EMPTY = ""
 
 # DEPENDENCY INJECTION
+
+PRODUCTION_FILE_PATH = Path(__file__).parent.parent / PACKAGE_REPOSITORY
 
 JSON_PRODUCTION_FILE_PATH = Path(
     __file__).parent.parent / PACKAGE_REPOSITORY / JSON_PRODUCTION_FILE
@@ -60,6 +68,12 @@ CSV_PRODUCTION_FILE_PATH = Path(
     __file__).parent.parent / PACKAGE_REPOSITORY / CSV_PRODUCTION_FILE
 
 TEST_FILE_PATH = Path(__file__).parent.parent / PACKAGE_REPOSITORY / TEST_FILE
+
+TEMPLATE_HTML_FILE_PATH = Path(
+    __file__).parent.parent.parent / STATIC_DIRECTORY / TEMPLATE_HTML_FILE
+
+INDEX_HTML_FILE_PATH = Path(
+    __file__).parent.parent.parent / STATIC_DIRECTORY / INDEX_HTML_FILE
 
 # ANIMALS API
 
@@ -78,6 +92,7 @@ SEARCH_MOVIE = "7"
 MOVIES_SORTED_BY_RATING = "8"
 MOVIES_SORTED_BY_YEAR = "9"
 FILTER_MOVIES = "10"
+GENERATE_MOVIES = "11"
 
 # RETURN CONSTANT
 
