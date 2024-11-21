@@ -50,7 +50,7 @@ def get_best_movie(result: dict) -> list:
     Identifies the movie(s) with the highest rating.
 
     Parameter:
-        result (dict): A dictionary where keys are movie names and values 
+        result (dict): A dictionary where keys are movie names and values
                        are details including ratings.
 
     Returns:

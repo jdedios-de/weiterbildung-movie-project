@@ -8,6 +8,7 @@ def test_oop_json():
     print(json_storage.list_movies())
     assert True
 
+
 def test_oop_csv():
     csv_storage = StorageCsv(constant.CSV_PRODUCTION_FILE_PATH)
     print(csv_storage.list_movies())
