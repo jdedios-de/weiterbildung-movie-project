@@ -7,6 +7,23 @@ from movie_app import MovieApp
 
 def main():
     """
+    Main script to initialize and run the Movie application with a specified JSON data file.
+
+    Modules:
+        - os: Provides functionality to interact with the operating system, including file path checks.
+        - sys: Accesses command-line arguments.
+        - movie.storage.storage_csv: Contains the `StorageCsv` class for handling CSV-based storage.
+        - movie.utility.constant: Supplies constants, such as the production file path.
+        - movie_app: Contains the `MovieApp` class, which drives the application's core functionality.
+
+    Example:
+        python main.py data.json
+
+    Error Handling:
+        - Raises `FileNotFoundError` if the specified JSON file does not exist.
+        - Prints a usage guide if incorrect arguments are provided.
+
+    """
     try:
         arguments = len(sys.argv)
         file_path = constant.PRODUCTION_FILE_PATH / sys.argv[1]
@@ -25,12 +42,6 @@ def main():
     except Exception:
         print(
             "Run the application: python main.py <data.json> e.g. python main.py data.json")
-
-    """
-
-    storage = StorageCsv(constant.JSON_PRODUCTION_FILE_PATH)
-    movie_app = MovieApp(storage)
-    movie_app.run()
 
 
 if __name__ == '__main__':

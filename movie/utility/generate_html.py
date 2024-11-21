@@ -4,6 +4,19 @@ from movie.utility.misc_util import result_message
 
 
 def get_api_movies_format_html(result: dict) -> result_message:
+    """
+    Formats movie data fetched from storage into HTML structure.
+
+    Parameter:
+        result (dict): The dictionary containing movie data and result status.
+
+    Returns:
+        result_message: A dictionary containing:
+            - result (bool): Status of the operation.
+            - message (str): Success or failure message.
+            - payload (str): HTML formatted string of movies or a "No movies"
+                             message.
+    """
     output = ''
     if result[constant.RESULT]:
         for key, value in result[constant.PAYLOAD].items():
@@ -40,6 +53,15 @@ def get_api_movies_format_html(result: dict) -> result_message:
 
 
 def replace_html_from_storage_items(html_result) -> dict:
+    """
+    Replaces placeholders in the HTML template with actual movie data.
+
+    Parameter:
+        html_result (dict): Dictionary containing movie data.
+
+    Returns:
+        dict: Updated HTML content with movie data or placeholders.
+    """
     return_value = fetch_data_html(constant.TEMPLATE_HTML_FILE_PATH)
 
     return_value_from_storage = get_api_movies_format_html(html_result)
@@ -57,6 +79,15 @@ def replace_html_from_storage_items(html_result) -> dict:
 
 
 def generate_new_html_file(html_result):
+    """
+    Generates or updates an HTML file with movie data.
+
+    Parameter:
+        html_result (dict): Dictionary containing movie data.
+
+    Returns:
+        dict: A result message indicating success or failure.
+    """
     result = replace_html_from_storage_items(html_result)
 
     if result[constant.RESULT]:

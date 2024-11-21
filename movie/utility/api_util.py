@@ -11,16 +11,41 @@ from movie.utility.data_util import build_dict_poster
 
 
 def get_key() -> str:
+    """
+    Retrieves the API key from the `.env` file.
+
+    Returns:
+        str: The API key as a string.
+    """
     load_dotenv()
 
     return os.getenv('key')
 
 
 def get_parameters(movie_title: str) -> str:
+    """
+    Constructs query parameters for the API request.
+
+    Parameter:
+        movie_title (str): The title of the movie to fetch.
+
+    Returns:
+        str: A query string containing the movie title and `apikey` placeholder.
+    """
     return f"?t={movie_title}&apikey="
 
 
 def get_movie_data_from_api(movie_title: str) -> json:
+    """
+    Fetches movie data from an external API using the title.
+
+    Parameter:
+        movie_title (str): Title of the movie to search.
+
+    Returns:
+        json: A `result_message` JSON object indicating success or failure,
+              along with movie data or error details.
+    """
     try:
         response = requests.get(
             MOVIE_API_URL + get_parameters(movie_title) + get_key(),
@@ -62,4 +87,5 @@ def get_movie_data_from_api(movie_title: str) -> json:
                  f"{response.json()}",
                  f": {response.json()}"))
     except Exception:
-            raise Exception("Please check if the .env file exists or if the key exists.")
+        raise Exception(
+            "Please check if the .env file exists or if the key exists.")

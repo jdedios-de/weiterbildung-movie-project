@@ -2,6 +2,11 @@ from abc import ABC, abstractmethod
 
 
 class IStorage(ABC):
+    """
+    Abstract base class for defining the interface for movie storage systems.
+    Ensures that any class inheriting from IStorage implements the required
+    methods for managing movie data.
+    """
     @abstractmethod
     def list_movies(self):
         pass
