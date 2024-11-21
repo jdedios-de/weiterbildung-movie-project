@@ -5,12 +5,47 @@ from movie.utility.input_util import input_filter_movie
 from movie.utility.misc_util import validate_input_filter_movie, \
     result_message
 
+"""
+MovieApp: A CLI-based application to manage a collection of movies.
+
+This script defines a `MovieApp` class and associated utility functions to manage movies,
+including operations such as listing, adding, deleting, updating, filtering, and generating
+a website for the movies.
+
+
+Modules and Utilities:
+    - `IStorage`: Interface for storage backends to manage movie data.
+    - `constant`: Defines application constants (e.g., keys and command options).
+    - `input_util`: Handles user inputs for various commands.
+    - `api_util`: Interacts with external movie APIs to fetch movie data.
+    - `generate_html`: Generates an HTML file to represent the movies.
+    - `misc_util`: Contains helper utilities such as data validation and messaging.
+    
+"""
+
 
 def print_filter_move(movies: dict) -> None:
+    """
+    Print filtered movies by delegating to the movie search print function.
+
+    Parameter:
+        movies (dict): A dictionary containing filtered movie data.
+
+    Returns:
+        None
+    """
     print_movie_search(movies)
 
 
 def print_movie_search(movies: dict) -> None:
+    """
+    Display a formatted list of movies with their release year and rating.
+
+    Parameters: movies (dict): A dictionary containing movie data.
+
+    Returns:
+        None
+    """
     print("\n".join(
         [
             f"{mov} ({details[constant.YEAR_KEY]}): "
@@ -30,16 +65,6 @@ def print_stats_movies(average_rating: float,
                        best_movie: list,
                        worst_movie: list,
                        payload) -> None:
-    """
-    Display statistics about the movies.
-
-    Parameters:
-        average_rating (float): The average rating of the movies.
-        median_rating (float): The median rating of the movies.
-        best_movie (list): A list of the best movie(s).
-        worst_movie (list): A list of the worst movie(s).
-        payload (dict): The dictionary containing movie details.
-    """
     print(f"\nAverage rating: {average_rating:.1f}")
     print(f"Median rating: {median_rating:.1f}")
 
@@ -187,19 +212,45 @@ def _command_exit_app():
 
 
 class MovieApp:
+
     def __init__(self, storage: IStorage):
+        """
+        Initializes the MovieApp with a specified storage instance.
+        """
         self.__storage = storage
 
     def get_storage(self):
+        """
+        Retrieves the current storage instance used by the application.
+
+        Returns:
+            IStorage: The storage instance handling movie data operations.
+        """
         return self.__storage
 
     def set_storage(self, storage: IStorage):
+        """
+        Updates the storage instance used by the application.
+
+        Parameters:
+            storage (IStorage): A valid storage instance implementing the
+                                IStorage interface.
+
+        Raises:
+            ValueError: If the provided storage is not an instance of IStorage
+                        or is invalid.
+        """
         if isinstance(storage, IStorage) and storage:
             self.__storage = storage
         else:
             raise ValueError("storage should be valid IStorage class.")
 
     def _command_list_movies(self):
+        """
+        Retrieves the list of movies from the storage, then prints the movie
+        details including the total count and relevant information such as
+        movie title, year, and rating.
+        """
         result = self.get_storage().list_movies()
         print_movie_list(len(result[constant.PAYLOAD]),
                          result[constant.PAYLOAD])
@@ -208,7 +259,19 @@ class MovieApp:
         select_options(self, call_menu())
 
     def _command_add_movie(self):
+        """
+        Adds a new movie to the storage system. Prompts the user to input a
+        movie name and optional notes. It then fetches movie data from an
+        external API. If the movie data is successfully retrieved, it adds
+        the movie to the storage with the provided information.
 
+        If the movie is added successfully, a confirmation message is displayed.
+        If the movie is not found in the API, an error message is shown.
+
+        Raises:
+            Exception: If the movie data cannot be fetched from the API or
+                       if the movie cannot be added to storage.
+        """
         movie_name, movie_notes = input_util.input_add_movie()
 
         try:
@@ -238,6 +301,18 @@ class MovieApp:
             select_options(self, call_menu())
 
     def _command_delete_movie(self):
+        """
+        Deletes a movie from the storage system. Prompts the user to input
+        the name of the movie they wish to delete. It then attempts to
+        delete the movie from the storage.
+
+        If the movie is not found in the storage, an error message is shown.
+        If the deletion is successful, a confirmation message is displayed.
+
+        Raises:
+            KeyError: If the movie is not found in the storage.
+            Exception: If there is any other error during the deletion process.
+        """
         while True:
             movie_name = input_util.input_delete_movie()
             try:
@@ -261,6 +336,21 @@ class MovieApp:
         select_options(self, call_menu())
 
     def _command_update_movie(self):
+        """
+        Updates the rating of an existing movie in the storage system.
+        Prompts the user to input the name of the movie they wish to update.
+        The method checks if the movie exists in the storage.
+        If the movie is found, it allows the user to enter a new rating for
+        the movie. The movie's rating is then updated in the storage.
+
+        If the movie is not found in the storage, an error message is shown.
+        If the update is unsuccessful, an exception is raised, and the error
+        is reported.
+
+        Raises:
+            KeyError: If the movie is not found in the storage.
+            Exception: If there is an issue updating the movie's rating.
+        """
         while True:
             movie_name = input_util.input_update_movie()
             try:
@@ -292,6 +382,13 @@ class MovieApp:
         select_options(self, call_menu())
 
     def _command_movie_stats(self):
+        """
+        Displays statistics about movies stored in the system.
+
+        Raises:
+            Exception: If there is an issue retrieving or processing the
+                       movie statistics from the storage.
+        """
         result = self.get_storage().stats_movie()
         print_stats_movies(result[constant.PAYLOAD][0],
                            result[constant.PAYLOAD][1],
@@ -302,6 +399,13 @@ class MovieApp:
         select_options(self, call_menu())
 
     def _command_random_movie(self):
+        """
+        Displays a randomly selected movie from the stored collection.
+
+        Raises:
+            Exception: If there is an issue retrieving or
+                       processing the random movie from the storage.
+        """
         result = self.get_storage().random_movie()
 
         print_random_generated_movie(result)
@@ -310,6 +414,13 @@ class MovieApp:
         select_options(self, call_menu())
 
     def _command_search_movie(self):
+        """
+        Searches for movies based on a partial name input by the user.
+
+        Raises:
+            Exception: If there is an issue retrieving or processing the
+                       movie search results.
+        """
         part_movie_name = input_util.input_search_movie()
 
         result = self.get_storage().search_movie(part_movie_name)
@@ -320,6 +431,13 @@ class MovieApp:
         select_options(self, call_menu())
 
     def _command_movie_sorted_by_rating(self):
+        """
+        Displays a list of movies sorted by their rating.
+
+        Raises:
+            Exception: If there is an issue retrieving or processing
+                       the sorted movie list.
+        """
 
         result = (self.get_storage().search_movie_sorted_by_rating
                   (constant.RATING_KEY))
@@ -331,6 +449,13 @@ class MovieApp:
         select_options(self, call_menu())
 
     def _command_movie_sorted_by_year(self):
+        """
+        Displays a list of movies sorted by their release year.
+
+        Raises:
+            Exception: If there is an issue retrieving or processing
+                       the sorted movie list.
+        """
 
         result = (self.get_storage().search_movie_sorted_by_year
                   (constant.YEAR_KEY))
@@ -342,6 +467,13 @@ class MovieApp:
         select_options(self, call_menu())
 
     def _command_filter_movie(self):
+        """
+        Filters movies based on a minimum rating and a range of release years.
+
+        Raises:
+            ValueError: If the provided filter values are invalid or
+                        do not match expected formats.
+        """
 
         (input_minimum_rating,
          input_start_year, input_end_year) = input_filter_movie()
@@ -362,6 +494,17 @@ class MovieApp:
         select_options(self, call_menu())
 
     def _generate_website(self):
+        """
+        Generates a static HTML website displaying the list of movies.
+
+        This method retrieves the list of movies from storage and generates a
+        static HTML file displaying the movie details using the
+        `generate_new_html_file` function. The user is notified whether
+        the website was successfully generated.
+
+        Raises:
+            Exception: If there is an issue generating the website.
+        """
         result: result_message = self.get_storage().list_movies()
 
         result = generate_new_html_file(result)
@@ -375,4 +518,10 @@ class MovieApp:
         select_options(self, call_menu())
 
     def run(self):
+        """
+        Runs the main menu of the MovieApp.
+
+        The method continuously prompts the user to select an option
+        until the app is terminated.
+        """
         select_options(self, call_menu())
