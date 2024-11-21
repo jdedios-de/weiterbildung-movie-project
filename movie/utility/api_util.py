@@ -38,6 +38,7 @@ def get_movie_data_from_api(movie_title: str) -> json:
                          build_dict_poster(response.json()["Title"],
                                            response.json()["Year"],
                                            response.json()["imdbRating"],
+                                           response.json()["imdbID"],
                                            response.json()["Poster"])))
             else:
                 return (misc_util.result_message

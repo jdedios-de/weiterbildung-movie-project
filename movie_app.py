@@ -1,7 +1,9 @@
-from movie.movie_services.istorage import IStorage
+from movie.storage.istorage import IStorage
 from movie.utility import constant, input_util, api_util
+from movie.utility.generate_html import generate_new_html_file
 from movie.utility.input_util import input_filter_movie
-from movie.utility.misc_util import validate_input_filter_movie
+from movie.utility.misc_util import validate_input_filter_movie, \
+    result_message
 
 
 def print_filter_move(movies: dict) -> None:
@@ -97,7 +99,8 @@ def print_menu() -> None:
     print("7. Search movie")
     print("8. Movies sorted by rating")
     print("9. Movies sorted by year")
-    print("10. Filter movies\n")
+    print("10. Filter movies")
+    print("11. Generate website\n")
 
 
 def select_options(self, user_choice: str) -> None:
@@ -124,6 +127,8 @@ def select_options(self, user_choice: str) -> None:
             self._command_movie_sorted_by_year,
         f"{constant.FILTER_MOVIES}":
             self._command_filter_movie,
+        f"{constant.GENERATE_MOVIES}":
+            self._generate_website,
     }
 
     option = return_options()
@@ -148,7 +153,8 @@ def return_options() -> list:
         constant.SEARCH_MOVIE,
         constant.MOVIES_SORTED_BY_RATING,
         constant.MOVIES_SORTED_BY_YEAR,
-        constant.FILTER_MOVIES
+        constant.FILTER_MOVIES,
+        constant.GENERATE_MOVIES
     ]
     return option
 
@@ -203,7 +209,7 @@ class MovieApp:
 
     def _command_add_movie(self):
 
-        movie_name = input_util.input_add_movie()
+        movie_name, movie_notes = input_util.input_add_movie()
 
         try:
             movie_return = api_util.get_movie_data_from_api(movie_name)
@@ -217,7 +223,11 @@ class MovieApp:
                                                           constant.YEAR_KEY],
                                                       value[
                                                           constant.RATING_KEY],
-                                                      "")
+                                                      value[
+                                                          constant.POSTER_KEY],
+                                                      movie_notes,
+                                                      value[
+                                                          constant.IMDBID_KEY])
                 if result["result"]:
                     print(f"Movie {movie_name} successfully added")
 
@@ -352,7 +362,17 @@ class MovieApp:
         select_options(self, call_menu())
 
     def _generate_website(self):
-        ...
+        result: result_message = self.get_storage().list_movies()
+
+        result = generate_new_html_file(result)
+
+        if result[constant.RESULT]:
+            print("Website was generated successfully.")
+        else:
+            print("Website was generated unsuccessfully.")
+
+        please_enter_to_continue()
+        select_options(self, call_menu())
 
     def run(self):
         select_options(self, call_menu())

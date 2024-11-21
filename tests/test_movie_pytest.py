@@ -97,7 +97,9 @@ class TestMovie:
                              )
     def test_add_movie(self, title, year, rating, expected_output, resource):
         result = movie_service.service_add_movie(title, str(year),
-                                                 str(rating),
+                                                 str(rating), "Temp File",
+                                                 "notes",
+                                                 "IMDBid",
                                                  constant.TEST_FILE_PATH)
         assert result["result"] == expected_output
 

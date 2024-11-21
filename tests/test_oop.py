@@ -1,5 +1,5 @@
-from movie.movie_services.storage_csv import StorageCsv
-from movie.movie_services.storage_json import StorageJson
+from movie.storage.storage_csv import StorageCsv
+from movie.storage.storage_json import StorageJson
 from movie.utility import constant
 
 
