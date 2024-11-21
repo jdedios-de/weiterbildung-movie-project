@@ -20,7 +20,6 @@ Modules and Utilities:
     - `api_util`: Interacts with external movie APIs to fetch movie data.
     - `generate_html`: Generates an HTML file to represent the movies.
     - `misc_util`: Contains helper utilities such as data validation and messaging.
-    
 """
 
 
