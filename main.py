@@ -36,12 +36,12 @@ def main():
             movie_app.run()
         else:
             print(
-                "Run the application: python main.py <data.json> e.g. python main.py data.json")
+                "Run the application: python3 main.py <data.json> e.g. python3 main.py data.json")
     except FileNotFoundError as e:
         print(f"Error: {e}")
     except Exception:
         print(
-            "Run the application: python main.py <data.json> e.g. python main.py data.json")
+            "Run the application: python3 main.py <data.json> e.g. python3 main.py data.json")
 
 
 if __name__ == '__main__':
