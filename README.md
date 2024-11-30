@@ -41,7 +41,8 @@ A Python-based project to manage and explore your movie collections effectively.
 
 4. **Run the application**:  
    ```bash  
-   python main.py  
+   python main.py data.csv
+   python main.py data.json
    ```  
 
 ## 📁 Project Structure  
